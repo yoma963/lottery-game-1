@@ -1,4 +1,5 @@
 {
+  "homepage": "https://yoma963.github.io/lottery-game-1",
   "name": "lottery-game-1",
   "version": "0.1.0",
   "private": true,
@@ -45,5 +46,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^6.1.1"
   }
 }

@@ -1,0 +1,15 @@
+.tip {
+    max-width: 100px;
+}
+
+.circle {
+    background: white;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    display: inline-block;
+    font-weight: bold;
+    line-height: 40px;
+    text-align: center;
+    width: 40px;
+}

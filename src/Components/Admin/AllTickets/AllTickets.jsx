@@ -173,12 +173,6 @@ const AllTickets = ({ fakeTickets, setFakeTickets,
                     ))}
                   </tr>
                 ))}
-                <tr>
-                  <td>Total expenses:</td>
-                  <td></td>
-                  <td></td>
-                  <td>{totalExpenses}</td>
-                </tr>
               </tbody>
             </Table>
           </div>

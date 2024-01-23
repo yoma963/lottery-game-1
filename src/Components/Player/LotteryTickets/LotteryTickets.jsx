@@ -1,12 +1,13 @@
-import { React, useState } from "react";
+import { React, useEffect, useState } from "react";
 import { Card, Table } from "react-bootstrap";
 
 import './lotteryTickets.css'
 import Caret from "../../../Assets/Caret";
 
-const LotteryTickets = ({ playerTickets, setPlayerTickets }) => {
+const LotteryTickets = ({ playerTickets, setPlayerTickets, totalIncome, setTotalIncome }) => {
 
   const [sort, setSort] = useState({ keyToSort: "nr", direction: "asc" });
+  const total = []
 
   const headers = [
     {
@@ -27,9 +28,18 @@ const LotteryTickets = ({ playerTickets, setPlayerTickets }) => {
     {
       id: 4,
       key: "prize",
-      label: "Prize"
+      label: "Prize (akcse)"
     }
   ]
+
+  useEffect(() => {
+    console.log("hali")
+    let total = 0;
+    playerTickets.forEach((item, index) => {
+        total += item.prize;
+    });
+    setTotalIncome(total);
+  },[playerTickets])
 
   const handleHeaderClick = (header) => {
     setSort({
@@ -51,45 +61,52 @@ const LotteryTickets = ({ playerTickets, setPlayerTickets }) => {
   };
 
   return (
-    <Card className="mb-3 d-flex bg-warning table-card">
-      <Card.Body>
-        <div className="tableFixHead">
-          <Table striped variant="light">
-            <thead>
-              <tr>
-                {headers.map((header, index) => (
-                  <th key={index} onClick={() => header.key === "noh" ? handleHeaderClick(header) : null}>
-                    <div className="header-container">
-                      <span>{header.label}</span>
-                      {header.key === "noh" && (
-                        <Caret
-                          direction={sort.keyToSort === header.key ? sort.direction : "asc"} />
-                      )}
-                    </div>
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {getSortedArray(playerTickets).map((row, index) => (
-                <tr key={index}>
+    playerTickets.length > 0
+      ? <Card className="mb-3 d-flex bg-warning table-card">
+        <Card.Body>
+          <div className="tableFixHead">
+            <Table striped variant="light">
+              <thead>
+                <tr>
                   {headers.map((header, index) => (
-                    <td title={row[header.key]} key={index}>
-                      {row[header.key]}
-                    </td>
+                    <th key={index} onClick={() => header.key === "noh" ? handleHeaderClick(header) : null}>
+                      <div className="header-container">
+                        <span>{header.label}</span>
+                        {header.key === "noh" && (
+                          <Caret
+                            direction={sort.keyToSort === header.key ? sort.direction : "asc"} />
+                        )}
+                      </div>
+                    </th>
                   ))}
                 </tr>
-              ))}
-              <tr>
-                <td>Total income:</td>
-                <td>0 akcse</td>
-              </tr>
-            </tbody>
-          </Table>
-        </div>
-      </Card.Body>
-    </Card>
-
+              </thead>
+              <tbody>
+                {getSortedArray(playerTickets).map((row, index) => (
+                  <tr key={index}>
+                    {headers.map((header, index) => (
+                      header.key === "tips"
+                        ? <td title={row[header.key]} key={index}>
+                          {row[header.key].join(", ")}
+                        </td>
+                        : <td title={row[header.key]} key={index}>
+                          {row[header.key]}
+                        </td>
+                    ))}
+                  </tr>
+                ))}
+                <tr>
+                  <td>Total income:</td>
+                  <td></td>
+                  <td></td>
+                  <td>{totalIncome}</td>
+                </tr>
+              </tbody>
+            </Table>
+          </div>
+        </Card.Body>
+      </Card>
+      : null
   );
 }
 

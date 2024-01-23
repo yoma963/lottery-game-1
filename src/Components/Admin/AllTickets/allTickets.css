@@ -1,6 +1,6 @@
 .tableFixHead-admin {
     overflow: auto;
-    height: 200px;
+    max-height: 400px;
 }
 
 .tableFixHead-admin thead th {

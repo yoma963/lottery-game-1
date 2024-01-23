@@ -5,10 +5,6 @@ import "./winners.css"
 
 const Winners = ({ winnerNumbers }) => {
 
-  useEffect(() => {
-    console.log(winnerNumbers)
-  }, [winnerNumbers])
-
   return (
     <>
       <Card className="mb-3 d-flex bg-warning text-center">
@@ -17,8 +13,8 @@ const Winners = ({ winnerNumbers }) => {
             <h1>Winner Numbers!</h1>
           </div>
           <div className="winner-numbers">
-            {winnerNumbers.map((item) =>
-              <h2 className="winner-circle mx-2">{item}</h2>
+            {winnerNumbers.map((item, index) =>
+              <h2 key={index} className="winner-circle mx-2">{item}</h2>
             )}
           </div>
         </Card.Body>

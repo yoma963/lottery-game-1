@@ -11,35 +11,14 @@ const Pages = () => {
   const [newRound, setNewRound] = useState(false);
   const [startInd, setStartInd] = useState(false);
   const [winnerNumbers, setWinnerNumbers] = useState([]);
+  const [adminBalance, setAdminBalance] = useState(0);
 
-  const [playerTickets, setPlayerTickets] = useState([{
-    owner: "Player",
-    tips: [1, 2, 3, 4, 5],
-    noh: 4,
-    prize: 200
-  },
-  {
-    owner: "Player",
-    tips: [1, 2, 3, 4, 5],
-    noh: 3,
-    prize: 100
-  },
-  {
-    owner: "Player",
-    tips: [1, 2, 3, 4, 5],
-    noh: 1,
-    prize: 300
-  },
-  {
-    owner: "Player",
-    tips: [1, 2, 3, 4, 5],
-    noh: 2,
-    prize: 400
-  }]);
+  const [playerTickets, setPlayerTickets] = useState([]);
+  const [totalIncome, setTotalIncome] = useState(0);
+  const [allTicketList, setAllTicketList] = useState([]);
 
   useEffect(() => {
     if (newGame) {
-      //setAdminBalance(0);
       setNewGame(false);
     }
   }, [newGame])
@@ -58,6 +37,11 @@ const Pages = () => {
             newRound={newRound} setNewRound={setNewRound}
             playerTickets={playerTickets} setPlayerTickets={setPlayerTickets}
             winningNumbers={winnerNumbers} setWinnerNumbers={setWinnerNumbers}
+            adminBalance={adminBalance} setAdminBalance={setAdminBalance}
+            allTicketList={allTicketList} setAllTicketList={setAllTicketList}
+            totalIncome={totalIncome} setTotalIncome={setTotalIncome}
+            startInd={startInd} setStartInd={setStartInd}
+            winnerNumbers={winnerNumbers}
           />
         </Tab>
         <Tab eventKey="admin" title="Admin">
@@ -67,6 +51,9 @@ const Pages = () => {
             playerTickets={playerTickets} setPlayerTickets={setPlayerTickets}
             startInd={startInd} setStartInd={setStartInd}
             winnerNumbers={winnerNumbers} setWinnerNumbers={setWinnerNumbers}
+            adminBalance={adminBalance} setAdminBalance={setAdminBalance}
+            allTicketList={allTicketList} setAllTicketList={setAllTicketList}
+            totalIncome={totalIncome} setTotalIncome={setTotalIncome}
           />
         </Tab>
       </Tabs>

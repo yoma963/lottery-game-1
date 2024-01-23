@@ -6,12 +6,12 @@ const AdminProfile = ({ adminBalance, setAdminBalance }) => {
   return (
     <Card className="mb-3 d-flex bg-warning">
       <Card.Body>
-        <div className="welcome-message">
+        <div className="welcome-message d-flex justify-content-between align-items-center">
           <h1>Hi, Admin</h1>
-        </div>
-        <div className="balance d-flex mt-3 justify-content-between fw-bold">
           <p>Balance</p>
-          <p className="money">{adminBalance.toLocaleString()} akcse</p>
+        </div>
+        <div className="balance d-flex justify-content-end fw-bold">
+          <h1 className="money">{adminBalance.toLocaleString()} akcse</h1>
         </div>
       </Card.Body>
     </Card>

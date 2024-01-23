@@ -4,13 +4,16 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import Button from "react-bootstrap/Button";
 import Popup from "reactjs-popup";
 import Form from "react-bootstrap/Form";
+import { Card, Text, Metric, Flex, ProgressBar } from "@tremor/react";
 
 import "./playerHeader.css"
 import 'reactjs-popup/dist/index.css';
 
 import LottoBall from "../../../Assets/LottoBall";
 
-const PlayerHeader = ({ player, setPlayer }) => {
+const PlayerHeader = ({ player, setPlayer,
+  newGame, setNewGame,
+  startInd, setStartInd }) => {
 
   const newPlayer = (event) => {
     event.preventDefault();
@@ -21,6 +24,8 @@ const PlayerHeader = ({ player, setPlayer }) => {
       name: playerName,
       balance: 10000
     });
+    setNewGame(true);
+    setStartInd(false);
   }
 
   return (
@@ -31,7 +36,7 @@ const PlayerHeader = ({ player, setPlayer }) => {
       </div>
       <div>
         <Popup
-          trigger={<Button variant='danger' className='new-player-button'>New player</Button>}
+          trigger={<Button variant='danger' className='new-game-button'>New game</Button>}
           modal
         >
           {close => (
@@ -48,9 +53,9 @@ const PlayerHeader = ({ player, setPlayer }) => {
               <div className="modal-content py-0">
                 <Form onSubmit={newPlayer}>
                   <Form.Group className="mb-3">
-                    <Form.Control required name="playerName" type="text" placeholder="Enter your name here..." />
+                    <Form.Control required name="playerName" className="my-2" type="text" placeholder="Enter your name here..." />
                     <div className="text-center">
-                      <Button variant="primary" type="submit" className="justify-content-center my-1">
+                      <Button variant="primary" type="submit" className="justify-content-center mt-2">
                         Let's go
                       </Button>
                     </div>

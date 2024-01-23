@@ -4,7 +4,7 @@
 
 .tableFixHead {
     overflow: auto;
-    height: 200px;
+    max-height: 200px;
 }
 
 .tableFixHead thead th {

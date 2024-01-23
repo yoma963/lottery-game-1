@@ -4,17 +4,19 @@ import { Button, Card, Form } from "react-bootstrap";
 import "./ticketGenerator.css"
 import { toast } from "react-toastify";
 
-const TicketGenerator = ({ fakeTickets, setFakeTickets }) => {
+const TicketGenerator = ({ fakeTickets, setFakeTickets,
+  adminBalance, setAdminBalance, ticketPrice }) => {
 
   const generateTickets = (event) => {
     event.preventDefault();
     const formData = new FormData(event.target),
       formDataObj = Object.fromEntries(formData.entries());
-    const numberOfTickets = formDataObj.numberOfTickets;
+    const numberOfTickets = Number(formDataObj.numberOfTickets);
     if ((fakeTickets.length + numberOfTickets) < 101) {
+      
       for (let i = 0; i < numberOfTickets; i++) {
         let arr = [];
-        while (arr.length < 6) {
+        while (arr.length < 5) {
           let r = Math.floor(Math.random() * 39) + 1;
           if (arr.indexOf(r) === -1) arr.push(r);
           let add = true;
@@ -33,9 +35,9 @@ const TicketGenerator = ({ fakeTickets, setFakeTickets }) => {
           prize: 0
         }]);
       }
+      setAdminBalance(adminBalance => adminBalance + (numberOfTickets * ticketPrice))
     }
     else {
-      console.log("hali")
       toast.error('Too much lottery ticket (max. 100)', {
         position: 'top-center',
         autoClose: 4000

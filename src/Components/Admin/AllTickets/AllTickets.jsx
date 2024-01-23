@@ -6,10 +6,16 @@ import Caret from "../../../Assets/Caret"
 
 const AllTickets = ({ fakeTickets, setFakeTickets,
   playerTickets, setPlayerTickets,
-  startInd, setStartInd }) => {
+  startInd, setStartInd,
+  winnerNumbers, setWinnerNumbers,
+  allTicketList, setAllTicketList,
+  adminBalance, setAdminBalance,
+  totalIncome, setTotalIncome,
+  winnerTickets, setWinnerTickets,
+  multiplier, totalExpenses, setTotalExpenses }) => {
 
   const [sort, setSort] = useState({ keyToSort: "owner", direction: "desc" });
-  const [allTicketList, setAllTicketList] = useState([]);
+  
 
   const headers = [
     {
@@ -30,7 +36,7 @@ const AllTickets = ({ fakeTickets, setFakeTickets,
     {
       id: 4,
       key: "prize",
-      label: "Prize"
+      label: "Prize (akcse)"
     }
   ]
 
@@ -56,6 +62,81 @@ const AllTickets = ({ fakeTickets, setFakeTickets,
     }
     return arrayToSort.sort((a, b) => (a[sort.keyToSort] > b[sort.keyToSort] ? -1 : 1));
   };
+
+  useEffect(() => {
+    if (allTicketList.length > 0) {
+      let arr = [];
+      while (arr.length < 5) {
+        let r = Math.floor(Math.random() * 39) + 1;
+        if (arr.indexOf(r) === -1) arr.push(r);
+        let add = true;
+
+        for (let y = 0; y < 39; y++) {
+          if (arr[y] == arr) {
+            add = false;
+          }
+        }
+      }
+      const sorted = [...arr].sort((a, b) => a - b);
+      setWinnerNumbers(sorted);
+    }
+  }, [startInd])
+
+  useEffect(() => {
+    if (winnerNumbers.length > 0) {
+      let winnerTicketsArr = []
+      let allIncome = 0;
+      let allExpenses = 0;
+
+      let playerArr = playerTickets;
+      let fakeArr = fakeTickets;
+
+      if (playerArr.length > 0) {
+        playerArr.forEach((item, index) => {
+          const hitCounter = countEqualElements(item.tips, winnerNumbers);
+          if (hitCounter > 0) {
+            playerArr[index].noh = hitCounter;
+            playerArr[index].prize = hitCounter * multiplier;
+            allExpenses += (hitCounter * multiplier)
+            allIncome += (hitCounter * multiplier)
+            winnerTicketsArr = winnerTicketsArr.concat(item);
+          }
+        });
+        setPlayerTickets(playerArr);
+      }
+      if (fakeArr.length > 0) {
+        fakeArr.forEach((item, index) => {
+          const hitCounter = countEqualElements(item.tips, winnerNumbers);
+          if (hitCounter > 0) {
+            fakeArr[index].noh = hitCounter;
+            fakeArr[index].prize = hitCounter * multiplier;
+            allExpenses += (hitCounter * multiplier);
+            winnerTicketsArr = winnerTicketsArr.concat(item);
+          }
+        });
+        setFakeTickets(fakeArr);
+      }
+      setAllTicketList(playerArr.concat(fakeArr));
+      setTotalExpenses(allExpenses);
+      setTotalIncome(allIncome);
+      setAdminBalance(adminBalance - allExpenses);
+      setWinnerTickets(winnerTicketsArr);
+    }
+  }, [winnerNumbers])
+
+  function countEqualElements(array1, array2) {
+    if (array1.length !== array2.length) {
+      return -1;
+    }
+
+    const setFromArray2 = new Set(array2);
+
+    const equalCount = array1.reduce((count, element) => {
+      return setFromArray2.has(element) ? count + 1 : count;
+    }, 0);
+
+    return equalCount;
+  }
 
   return (
     allTicketList.length > 0
@@ -93,8 +174,10 @@ const AllTickets = ({ fakeTickets, setFakeTickets,
                   </tr>
                 ))}
                 <tr>
-                  <td>Total income:</td>
-                  <td>0 akcse</td>
+                  <td>Total expenses:</td>
+                  <td></td>
+                  <td></td>
+                  <td>{totalExpenses}</td>
                 </tr>
               </tbody>
             </Table>

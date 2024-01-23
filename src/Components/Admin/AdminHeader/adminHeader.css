@@ -8,3 +8,7 @@
         margin-left: 20px;
     }
 }
+
+.disable-button {
+    cursor: not-allowed !important;
+}

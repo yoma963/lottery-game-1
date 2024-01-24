@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/lottery-game-1/static/css/main.1fa97997.css",
-    "main.js": "/lottery-game-1/static/js/main.14c794d3.js",
+    "main.css": "/lottery-game-1/static/css/main.c917cd10.css",
+    "main.js": "/lottery-game-1/static/js/main.13a992b4.js",
     "static/media/lotto-ball.svg": "/lottery-game-1/static/media/lotto-ball.d9efc4f16d950309d49100ff708f9aaf.svg",
     "index.html": "/lottery-game-1/index.html",
-    "main.1fa97997.css.map": "/lottery-game-1/static/css/main.1fa97997.css.map",
-    "main.14c794d3.js.map": "/lottery-game-1/static/js/main.14c794d3.js.map"
+    "main.c917cd10.css.map": "/lottery-game-1/static/css/main.c917cd10.css.map",
+    "main.13a992b4.js.map": "/lottery-game-1/static/js/main.13a992b4.js.map"
   },
   "entrypoints": [
-    "static/css/main.1fa97997.css",
-    "static/js/main.14c794d3.js"
+    "static/css/main.c917cd10.css",
+    "static/js/main.13a992b4.js"
   ]
 }

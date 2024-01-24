@@ -3,7 +3,8 @@
 }
 
 .circle {
-    background: white;
+    background: green;
+    color: white;
     border-radius: 50%;
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
@@ -13,4 +14,20 @@
     text-align: center;
     width: 40px;
     box-shadow: 2px 2px 4px #000000;
+}
+
+@media only screen and (max-width: 405px) {
+    .tip-block {
+        margin-inline: 5px;
+    }
+}
+@media only screen and (max-width: 992px) {
+    .tip-block {
+        margin-inline: 10px;
+    }
+}
+@media only screen and (min-width: 992px) {
+    .tip-block {
+        margin-inline: 20px;
+    }
 }

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Card } from "react-bootstrap";
 
 import "./winners.css"
@@ -7,9 +7,9 @@ const Winners = ({ winnerNumbers }) => {
 
   return (
     <>
-      <Card className="mb-3 d-flex bg-warning text-center">
+      <Card className="mb-3 d-flex bg-success text-center">
         <Card.Body>
-          <div className="winner-title">
+          <div className="winner-title text-white">
             <h1>Winner Numbers!</h1>
           </div>
           <div className="winner-numbers">

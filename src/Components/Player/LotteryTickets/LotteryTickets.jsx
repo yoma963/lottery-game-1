@@ -4,42 +4,48 @@ import { Card, Table } from "react-bootstrap";
 import './lotteryTickets.css'
 import Caret from "../../../Assets/Caret";
 
-const LotteryTickets = ({ playerTickets, setPlayerTickets, totalIncome, setTotalIncome }) => {
+const LotteryTickets = ({ playerTickets,
+  totalIncome, setTotalIncome,
+  startInd }) => {
 
-  const [sort, setSort] = useState({ keyToSort: "nr", direction: "asc" });
+  const [sort, setSort] = useState({ keyToSort: "time", direction: "asc" });
   const total = []
 
   const headers = [
     {
       id: 1,
+      key: "time",
+      label: "Time"
+    },
+    {
+      id: 2,
       key: "owner",
       label: "Owner"
     },
     {
-      id: 2,
+      id: 3,
       key: "tips",
       label: "Tips"
     },
     {
-      id: 3,
+      id: 4,
       key: "noh",
       label: "Number of Hits"
     },
     {
-      id: 4,
+      id: 5,
       key: "prize",
       label: "Prize (akcse)"
     }
   ]
 
   useEffect(() => {
-    console.log("hali")
     let total = 0;
     playerTickets.forEach((item, index) => {
-        total += item.prize;
+      total += item.prize;
     });
     setTotalIncome(total);
-  },[playerTickets])
+  }, [playerTickets])
 
   const handleHeaderClick = (header) => {
     setSort({
@@ -69,10 +75,10 @@ const LotteryTickets = ({ playerTickets, setPlayerTickets, totalIncome, setTotal
               <thead>
                 <tr>
                   {headers.map((header, index) => (
-                    <th key={index} onClick={() => header.key === "noh" ? handleHeaderClick(header) : null}>
+                    <th key={index} onClick={() => (header.key === "noh") && startInd ? handleHeaderClick(header) : null}>
                       <div className="header-container">
                         <span>{header.label}</span>
-                        {header.key === "noh" && (
+                        {(header.key === "noh") && startInd && (
                           <Caret
                             direction={sort.keyToSort === header.key ? sort.direction : "asc"} />
                         )}
@@ -97,6 +103,7 @@ const LotteryTickets = ({ playerTickets, setPlayerTickets, totalIncome, setTotal
                 ))}
                 <tr>
                   <td>Total income:</td>
+                  <td></td>
                   <td></td>
                   <td></td>
                   <td>{totalIncome}</td>

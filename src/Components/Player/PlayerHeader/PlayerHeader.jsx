@@ -11,9 +11,8 @@ import 'reactjs-popup/dist/index.css';
 
 import LottoBall from "../../../Assets/LottoBall";
 
-const PlayerHeader = ({ player, setPlayer,
-  newGame, setNewGame,
-  startInd, setStartInd }) => {
+const PlayerHeader = ({ setPlayer,
+  setNewGame, setStartInd }) => {
 
   const newPlayer = (event) => {
     event.preventDefault();
@@ -36,8 +35,9 @@ const PlayerHeader = ({ player, setPlayer,
       </div>
       <div>
         <Popup
-          trigger={<Button variant='danger' className='new-game-button'>New game</Button>}
+          trigger={<Button variant='danger' className='new-game-button'>New player</Button>}
           modal
+          contentStyle={{ minWidth: "300px" }}
         >
           {close => (
             <div className="d-block p-1">

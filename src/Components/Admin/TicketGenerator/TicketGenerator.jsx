@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Button, Card, Form } from "react-bootstrap";
 
 import "./ticketGenerator.css"
 import { toast } from "react-toastify";
 
 const TicketGenerator = ({ fakeTickets, setFakeTickets,
-  adminBalance, setAdminBalance, ticketPrice }) => {
+  setAdminBalance, ticketPrice }) => {
 
   const generateTickets = (event) => {
     event.preventDefault();
@@ -28,7 +28,10 @@ const TicketGenerator = ({ fakeTickets, setFakeTickets,
           }
         }
         const sorted = [...arr].sort((a, b) => a - b);
+        const now = new Date();
+
         setFakeTickets(fakeTickets => [...fakeTickets, {
+          time: now.toLocaleString(),
           owner: "Bot",
           tips: sorted,
           noh: 0,

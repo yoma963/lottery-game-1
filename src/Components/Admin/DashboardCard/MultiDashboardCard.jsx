@@ -2,7 +2,6 @@ import React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 
 const MultiDashboardCard = ({ bg, title, keys, values }) => {
   return (

@@ -10,11 +10,10 @@ import Winners from "../Components/Admin/Winners/Winners";
 
 const PlayerPage = ({ playerTickets, setPlayerTickets,
   newGame, setNewGame,
-  newRound, setNewRound,
   player, setPlayer,
   adminBalance, setAdminBalance,
   totalIncome, setTotalIncome,
-  startInd, setStartInd, 
+  startInd, setStartInd,
   winnerNumbers }) => {
 
   useEffect(() => {
@@ -34,8 +33,8 @@ const PlayerPage = ({ playerTickets, setPlayerTickets,
     <>
       <div className="">
         <PlayerHeader player={player} setPlayer={setPlayer}
-        newGame={newGame} setNewGame={setNewGame} 
-        startInd={startInd} setStartInd={setStartInd}/>
+          newGame={newGame} setNewGame={setNewGame}
+          startInd={startInd} setStartInd={setStartInd} />
         {JSON.stringify(player) !== "{}"
           ? <PlayerProfile player={player} setPlayer={setPlayer} />
           : null}
@@ -44,10 +43,11 @@ const PlayerPage = ({ playerTickets, setPlayerTickets,
             adminBalance={adminBalance} setAdminBalance={setAdminBalance}
             playerTickets={playerTickets} setPlayerTickets={setPlayerTickets}
           />
-          : <Winners winnerNumbers={winnerNumbers} />}
+          : startInd ? <Winners winnerNumbers={winnerNumbers} /> : null}
         {playerTickets.length > 0
           ? <LotteryTickets playerTickets={playerTickets} setPlayerTickets={setPlayerTickets}
-            totalIncome={totalIncome} setTotalIncome={setTotalIncome} />
+            totalIncome={totalIncome} setTotalIncome={setTotalIncome}
+            startInd={startInd} />
           : null}
       </div>
     </>

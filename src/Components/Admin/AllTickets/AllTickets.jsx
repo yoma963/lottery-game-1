@@ -6,35 +6,39 @@ import Caret from "../../../Assets/Caret"
 
 const AllTickets = ({ fakeTickets, setFakeTickets,
   playerTickets, setPlayerTickets,
-  startInd, setStartInd,
+  startInd,
   winnerNumbers, setWinnerNumbers,
   allTicketList, setAllTicketList,
   adminBalance, setAdminBalance,
-  totalIncome, setTotalIncome,
-  winnerTickets, setWinnerTickets,
-  multiplier, totalExpenses, setTotalExpenses }) => {
+  setTotalIncome, setWinnerTickets,
+  multiplier, setTotalExpenses }) => {
 
   const [sort, setSort] = useState({ keyToSort: "owner", direction: "desc" });
-  
+
 
   const headers = [
     {
       id: 1,
+      key: "time",
+      label: "Time"
+    },
+    {
+      id: 2,
       key: "owner",
       label: "Owner"
     },
     {
-      id: 2,
+      id: 3,
       key: "tips",
       label: "Tips"
     },
     {
-      id: 3,
+      id: 4,
       key: "noh",
       label: "Number of Hits"
     },
     {
-      id: 4,
+      id: 5,
       key: "prize",
       label: "Prize (akcse)"
     }

@@ -1,7 +1,7 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 
-const AdminProfile = ({ adminBalance, setAdminBalance }) => {
+const AdminProfile = ({ adminBalance }) => {
 
   return (
     <Card className="mb-3 d-flex bg-warning">

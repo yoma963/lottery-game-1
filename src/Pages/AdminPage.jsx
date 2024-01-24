@@ -72,40 +72,15 @@ const AdminPage = ({ startInd, setStartInd,
 
   useEffect(() => {
     if (winnerTickets.length > 0) {
-      let oneHit = 0;
-      let twoHit = 0;
-      let threeHit = 0;
-      let fourHit = 0;
-      let fiveHit = 0;
-      winnerTickets.forEach((item, index) => {
-        switch (item.noh) {
-          case 1:
-            oneHit++;
-            break;
-          case 2:
-            twoHit++;
-            break;
-          case 3:
-            threeHit++;
-            break;
-          case 4:
-            fourHit++;
-            break;
-          case 5:
-            fiveHit++;
-            break;
-          default:
-            break;
-        }
-      })
-      setPayablePrices([
-        oneHit * multiplier,
-        twoHit * multiplier,
-        threeHit * multiplier,
-        fourHit * multiplier,
-        fiveHit * multiplier
-      ])
-    }
+      const hitCounts = Array(6).fill(0);
+    
+      winnerTickets.forEach((item) => {
+        hitCounts[item.noh] += 1;
+      });
+    
+      const payablePrices = hitCounts.slice(1).map((count, index) => count * (index + 1) * multiplier);
+      setPayablePrices(payablePrices);
+    }    
   }, [winnerTickets])
 
   return (
@@ -119,6 +94,11 @@ const AdminPage = ({ startInd, setStartInd,
           newGame={newGame} setNewGame={setNewGame}
           newRound={newRound} setNewRound={setNewRound}
         />
+        {!startInd
+          ? <TicketGenerator fakeTickets={fakeTickets} setFakeTickets={setFakeTickets}
+            adminBalance={adminBalance} setAdminBalance={setAdminBalance} ticketPrice={ticketPrice} />
+          : <Winners winnerNumbers={winnerNumbers} />}
+
         {winnerNumbers.length > 0
           ? <div className="dashboard mb-3">
             <div className="row">
@@ -149,11 +129,6 @@ const AdminPage = ({ startInd, setStartInd,
           </div>
           : null
         }
-
-        {!startInd
-          ? <TicketGenerator fakeTickets={fakeTickets} setFakeTickets={setFakeTickets}
-            adminBalance={adminBalance} setAdminBalance={setAdminBalance} ticketPrice={ticketPrice} />
-          : <Winners winnerNumbers={winnerNumbers} />}
 
         <AllTickets fakeTickets={fakeTickets} setFakeTickets={setFakeTickets}
           playerTickets={playerTickets} setPlayerTickets={setPlayerTickets}

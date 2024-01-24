@@ -1,14 +1,26 @@
 .admin-header {
     width: 100%;
-    display: inline-flex;
     justify-content: space-between;
-    flex-direction: row;
     align-items: center;
+    .start-game-button {
+        width: 100%;
+    }
     .admin-header-right button{
         margin-left: 20px;
     }
 }
 
+.admin-header-right {
+    max-width: fit-content;
+}
+
 .disable-button {
     cursor: not-allowed !important;
+}
+
+@media only screen and (max-width: 405px) {
+    .admin-header-right button{
+        margin-left: 0;
+        margin-block: 3px;
+    }
 }

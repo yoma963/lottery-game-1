@@ -7,11 +7,13 @@ import { toast } from "react-toastify";
 
 const SingleTicket = ({ player, setPlayer,
   adminBalance, setAdminBalance,
-  playerTickets, setPlayerTickets }) => {
+  setPlayerTickets }) => {
 
   const ticketPrice = 500;
 
   const newTicket = (event) => {
+    const now = new Date();
+
     event.preventDefault();
     const formData = new FormData(event.target),
       formDataObj = Object.fromEntries(formData.entries());
@@ -29,7 +31,8 @@ const SingleTicket = ({ player, setPlayer,
 
         const sorted = [...numbers].sort((a, b) => a - b);
         setPlayerTickets(playerTickets => [...playerTickets, {
-          owner: "Player", 
+          time: now.toLocaleString(),
+          owner: "Player",
           tips: sorted,
           noh: 0,
           prize: 0
@@ -67,24 +70,24 @@ const SingleTicket = ({ player, setPlayer,
         </div>
         <Form onSubmit={newTicket}>
           <Form.Group className="mb-2">
-            <div className="tip-numbers d-flex justify-content-between mx-3">
-              <div className="text-center my-1">
+            <div className="tip-numbers d-flex justify-content-center mx-lg-3 flex-wrap">
+              <div className="text-center tip-block">
                 <Form.Label className="circle my-3">1</Form.Label>
                 <Form.Control name="numOne" required type="number" placeholder="1 - 39" className="tip" min={1} max={39} />
               </div>
-              <div className="text-center">
+              <div className="text-center tip-block">
                 <Form.Label className="circle my-3">2</Form.Label>
                 <Form.Control name="numTwo" required type="number" placeholder="1 - 39" className="tip" min={1} max={39} />
               </div>
-              <div className="text-center">
+              <div className="text-center tip-block">
                 <Form.Label className="circle my-3">3</Form.Label>
                 <Form.Control name="numThree" required type="number" placeholder="1 - 39" className="tip" min={1} max={39} />
               </div>
-              <div className="text-center">
+              <div className="text-center tip-block">
                 <Form.Label className="circle my-3">4</Form.Label>
                 <Form.Control name="numFour" required type="number" placeholder="1 - 39" className="tip" min={1} max={39} />
               </div>
-              <div className="text-center">
+              <div className="text-center tip-block">
                 <Form.Label className="circle my-3">5</Form.Label>
                 <Form.Control name="numFive" required type="number" placeholder="1 - 39" className="tip" min={1} max={39} />
               </div>

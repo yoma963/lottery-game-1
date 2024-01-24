@@ -1,7 +1,7 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 
-const PlayerProfile = ({ player, setplayer }) => {
+const PlayerProfile = ({ player }) => {
   return (
     <Card className="mb-3 d-flex bg-warning">
       <Card.Body>

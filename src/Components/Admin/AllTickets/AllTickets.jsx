@@ -123,6 +123,7 @@ const AllTickets = ({ fakeTickets, setFakeTickets,
       setAllTicketList(playerArr.concat(fakeArr));
       setTotalExpenses(allExpenses);
       setTotalIncome(allIncome);
+      
       setAdminBalance(adminBalance - allExpenses);
       setWinnerTickets(winnerTicketsArr);
     }

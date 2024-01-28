@@ -6,7 +6,7 @@ import Caret from "../../../Assets/Caret";
 
 const LotteryTickets = ({ playerTickets,
   totalIncome, setTotalIncome,
-  startInd }) => {
+  startInd, player, setPlayer }) => {
 
   const [sort, setSort] = useState({ keyToSort: "time", direction: "asc" });
   const total = []
@@ -65,6 +65,12 @@ const LotteryTickets = ({ playerTickets,
     }
     return arrayToSort.sort((a, b) => (a[sort.keyToSort] > b[sort.keyToSort] ? -1 : 1));
   };
+
+  useEffect(() => {
+    if(totalIncome > 0 && startInd) {
+      setPlayer({ ...player, balance: player.balance + totalIncome })
+    }
+  },[totalIncome])
 
   return (
     playerTickets.length > 0

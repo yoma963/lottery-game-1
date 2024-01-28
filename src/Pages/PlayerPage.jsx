@@ -47,7 +47,7 @@ const PlayerPage = ({ playerTickets, setPlayerTickets,
         {playerTickets.length > 0
           ? <LotteryTickets playerTickets={playerTickets} setPlayerTickets={setPlayerTickets}
             totalIncome={totalIncome} setTotalIncome={setTotalIncome}
-            startInd={startInd} />
+            startInd={startInd} player={player} setPlayer={setPlayer}/>
           : null}
       </div>
     </>
